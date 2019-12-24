@@ -1,7 +1,12 @@
-export const LOAD_USERS = 'LOAD_USERS';
-export const REMOVE_TODO_ITEM = 'REMOVE_TODO_ITEM';
+export const UPLOAD_USERS = 'UPLOAD_USERS';
+export const UPLOAD_USERS_EVENT = 'UPLOAD_USERS_EVENT';
 
-export const loadUsersFromServer = () => ({
-  type: LOAD_USERS,
-  payload: {}
+export const uploadUsers = (users: object) => ({
+  type: UPLOAD_USERS,
+  payload: {users}
+});
+
+export const uploadUsersEvent = (id: bigint, event: object) => ({
+  type: UPLOAD_USERS_EVENT,
+  payload: {id, event}
 });

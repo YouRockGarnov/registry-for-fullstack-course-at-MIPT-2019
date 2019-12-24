@@ -13,15 +13,19 @@ import axios from 'axios';
 import string from 'd3-geo/src/path/string';
 import {UserProvided, connect} from '../components/UserProvided'
 import { Route } from 'react-router-dom';
+import {store} from '../index'
 
 
 class CardPage extends UserProvided {
   render() {
+    console.log('STORED STATE');
+    console.log(this.props.users);
+    let patient_cards = this.props.users.slice();
 
-    let patient_cards = this.state.users.slice();
-    patient_cards = !this.state.isLoading ?
+
+    patient_cards = !this.props.isLoading ?
       patient_cards.map(user =>
-        PatientCard(user.username, user.id in this.state.events ? this.state.events[user.id] : []))
+        PatientCard(user.username, user.id in this.props.events ? this.props.events[user.id].slice(0, 3) : []))
       : PatientCard('SHit', ['aaa']);
 
     const rows = [];

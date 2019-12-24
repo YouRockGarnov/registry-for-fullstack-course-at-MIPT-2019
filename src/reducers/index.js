@@ -14,7 +14,7 @@ const logger = store => next => action => {
 
 const saver = store => next => action => {
   let result = next(action);
-  localStorage['mipt-web'] = JSON.stringify(store.getState());
+  localStorage['medbrother'] = JSON.stringify(store.getState());
   return result;
 };
 
@@ -27,8 +27,6 @@ const initStorage = (initialState = {}) => {
 
 export const storeFactory = (initialState = {}) => (
   applyMiddleware(logger, saver)(createStore)(
-    combineReducers({
-      todo: userReducer,
-    }), initStorage(initialState)
+    combineReducers({user_data: userReducer }), initStorage(initialState)
   )
 );
