@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'utils/propTypes';
+import { Form, Input } from 'reactstrap';
 
 import {
   Card,
@@ -12,15 +13,13 @@ import {
   ListGroupItem,
   CardLink,
 } from 'reactstrap';
+import axios from 'axios';
 
-
-import classNames from 'classnames';
-
-
-const PatientCard = (title, card_body, events) => {
+const PatientCard = (title, Card_body, events) => {
   // const bgColor = `bg-${color}`;
   // const classes = classNames(bgColor, className);
-
+console.log('EVENTS');
+console.log(events);
 
   return (
     <Card>
@@ -30,9 +29,9 @@ const PatientCard = (title, card_body, events) => {
         </CardText>
       </CardBody>
       <ListGroup flush>
-        {events.map((event) => <Button href={JSON.parse(event.additional_data)['url']} color={'light'}>{event.description}</Button>)}
+        {events.map((event) => <Button href={(event.additional_data !== '' ? JSON.parse(event.additional_data)['url'] : '')} color={'light'}>{event.description}</Button>)}
       </ListGroup>
-      {card_body}
+      <Card_body/>
     </Card>
   );
 };
@@ -40,12 +39,7 @@ const PatientCard = (title, card_body, events) => {
 PatientCard.propTypes = {
   color: PropTypes.string,
   header: PropTypes.node,
-  avatar: PropTypes.string,
-  avatarSize: PropTypes.number,
   name: PropTypes.string,
-  date: PropTypes.date,
-  className: PropTypes.string,
-  children: PropTypes.element,
 };
 //
 // AnnouncementCard.defaultProps = {
