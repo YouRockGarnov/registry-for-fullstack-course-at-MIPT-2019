@@ -5,6 +5,8 @@ import React from 'react';
 import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/main.scss';
+import OneCardPages from 'pages/OneCardPages'
+import {store} from './index';
 
 const CardPage = React.lazy(() => import('pages/CardPage'));
 
@@ -16,6 +18,7 @@ const getBasename = () => {
 class App extends React.Component {
   render() {
     console.log('!!!!!!');
+    console.log(store.getState())
 
     return (
 
@@ -25,6 +28,7 @@ class App extends React.Component {
               <MainLayout breakpoint={this.props.breakpoint}>
                 <React.Suspense fallback={<PageSpinner />}>
                   <Route exact path="/cards" component={CardPage} />
+                  {OneCardPages(store.getState())}
                 </React.Suspense>
               </MainLayout>
               <Redirect to="/" />

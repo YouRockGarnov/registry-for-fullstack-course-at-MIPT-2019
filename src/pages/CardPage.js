@@ -1,4 +1,3 @@
-import { UserCard, PatientCard } from 'components/Card';
 import React, { Component } from 'react'
 import Page from 'components/Page';
 
@@ -13,20 +12,15 @@ import axios from 'axios';
 import string from 'd3-geo/src/path/string';
 import {UserProvided, connect} from '../components/UserProvided'
 import { Route } from 'react-router-dom';
-import {store} from '../index'
+
 
 
 class CardPage extends UserProvided {
   render() {
     console.log('STORED STATE');
     console.log(this.props.users);
-    let patient_cards = this.props.users.slice();
 
-
-    patient_cards = !this.props.isLoading ?
-      patient_cards.map(user =>
-        PatientCard(user.username, user.id in this.props.events ? this.props.events[user.id].slice(0, 3) : []))
-      : PatientCard('SHit', ['aaa']);
+    let patient_cards = this.get_all_patient_cards();
 
     const rows = [];
     for (let i = 0; i < patient_cards.length / 2 + (patient_cards.length % 2 === 0 ? 0 : 1); i++ ) {

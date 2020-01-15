@@ -17,11 +17,10 @@ import {
 import classNames from 'classnames';
 
 
-const PatientCard = (title, events) => {
+const PatientCard = (title, card_body, events) => {
   // const bgColor = `bg-${color}`;
   // const classes = classNames(bgColor, className);
-  console.log(title);
-  console.log(events);
+
 
   return (
     <Card>
@@ -31,16 +30,9 @@ const PatientCard = (title, events) => {
         </CardText>
       </CardBody>
       <ListGroup flush>
-        {events.map((event) => <ListGroupItem>{event.description}</ListGroupItem>)}
+        {events.map((event) => <Button href={JSON.parse(event.additional_data)['url']} color={'light'}>{event.description}</Button>)}
       </ListGroup>
-      {/*<CardBody>*/}
-      {/*  <CardLink tag="a" href="#">*/}
-      {/*    Go to details*/}
-      {/*  </CardLink>*/}
-      {/*  <CardLink tag="a" href="#">*/}
-      {/*    More*/}
-      {/*  </CardLink>*/}
-      {/*</CardBody>*/}
+      {card_body}
     </Card>
   );
 };

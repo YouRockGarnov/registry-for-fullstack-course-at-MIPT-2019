@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import {connect as reduxConnect, useDispatch, useSelector} from "react-redux";
 import { uploadUsers, uploadUsersEvent } from '../actions';
+import { UserCard, PatientCard } from 'components/Card'
+import { Card, CardBody, CardLink } from 'reactstrap';
 
 const LOGIN = 'in28minutes';
 const PSWD = 'dummy';
@@ -50,7 +52,24 @@ export class UserProvided extends Component {
     console.log('asdfafd');
     this.props.uploadUsers();
   }
+
+  get_all_patient_cards() {
+    let patient_cards = this.props.users.slice();
+
+    let get_card_body = (user) =>
+      <CardBody>
+        <CardLink tag="a" href={"/cards/" + user.id.toString()}>
+          Подробнее
+        </CardLink>
+      </CardBody>;
+
+    return !this.props.isLoading ?
+        patient_cards.map(user =>
+            PatientCard(user.username, get_card_body(user), user.id in this.props.events ? this.props.events[user.id].slice(0, 3) : []))
+        : PatientCard('SHit', {}, ['aaa']);
+  };
 }
+
 
 export function connect(Component) {
   return reduxConnect(  store => ({

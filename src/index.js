@@ -11,7 +11,7 @@ const initialState = {
     isLoading: true
 };
 
-export const store = storeFactory(initialState);
+export var store = storeFactory(initialState);
 
 const render = () => ReactDOM.render(
     <Provider store={store}>
