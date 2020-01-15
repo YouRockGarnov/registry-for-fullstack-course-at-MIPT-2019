@@ -1,12 +1,12 @@
 import {UserProvided, connect} from '../components/UserProvided'
-import React from 'react';
+import {Component} from 'react';
 import Page from 'components/Page';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { PatientCard } from '../components/Card';
 import {store} from '../index'
 import { Card, Form, Input } from 'reactstrap';
 import axios from 'axios';
-import { Component } from 'react'
+import React from 'react'
 
 function sleep(ms) {
     ms += new Date().getTime();

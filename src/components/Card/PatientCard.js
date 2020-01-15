@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'utils/propTypes';
 import { Form, Input } from 'reactstrap';
+import classNames from 'classnames';
 
 import {
   Card,
@@ -18,8 +19,6 @@ import axios from 'axios';
 const PatientCard = (title, Card_body, events) => {
   // const bgColor = `bg-${color}`;
   // const classes = classNames(bgColor, className);
-console.log('EVENTS');
-console.log(events);
 
   return (
     <Card>
@@ -29,7 +28,7 @@ console.log(events);
         </CardText>
       </CardBody>
       <ListGroup flush>
-        {events.map((event) => <Button href={(event.additional_data !== '' ? JSON.parse(event.additional_data)['url'] : '')} color={'light'}>{event.description}</Button>)}
+        {events.map((event) => <Button href={JSON.parse(event.additional_data)['url']} color={'light'}>{event.description}</Button>)}
       </ListGroup>
       <Card_body/>
     </Card>
@@ -39,7 +38,12 @@ console.log(events);
 PatientCard.propTypes = {
   color: PropTypes.string,
   header: PropTypes.node,
+    avatar: PropTypes.string,
+    avatarSize: PropTypes.number,
   name: PropTypes.string,
+    date: PropTypes.date,
+    className: PropTypes.string,
+    children: PropTypes.element,
 };
 //
 // AnnouncementCard.defaultProps = {
