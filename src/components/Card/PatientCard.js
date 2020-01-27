@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'utils/propTypes';
+import { Form, Input } from 'reactstrap';
+import axios from 'axios';
+import InputForm from '../../pages/OneCardPages'
 
 import {
   Card,
@@ -17,7 +20,7 @@ import {
 import classNames from 'classnames';
 
 
-const PatientCard = (title, card_body, events) => {
+const PatientCard = (title, Card_lol, events) => {
   // const bgColor = `bg-${color}`;
   // const classes = classNames(bgColor, className);
 
@@ -32,7 +35,8 @@ const PatientCard = (title, card_body, events) => {
       <ListGroup flush>
         {events.map((event) => <Button href={JSON.parse(event.additional_data)['url']} color={'light'}>{event.description}</Button>)}
       </ListGroup>
-      {card_body}
+      <InputForm>
+      </InputForm>
     </Card>
   );
 };
